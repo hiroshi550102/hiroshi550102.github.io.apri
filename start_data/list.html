@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width">
+	<link href="https://fonts.googleapis.com/earlyaccess/nicomoji.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+	<header class="header">
+		<h1 class="site-name">トイタン</h1>
+	</header>
+
+	<div class="contents">
+		<div id="list">
+		
+		</div>
+		<div id="check-delete">checkを全て外す</div>
+		<div id="check-none">checkした単語はありません</div>
+	</div>
+
+
+	<nav class="nav">
+		<a href="index.html"><img src="./img/icon_home.svg" alt=""></a>
+		<a href="list.html" class="nav-check"><img src="./img/icon_list.svg" alt=""></a>
+	</nav>
+	
+	<script src="./js/questions.js"></script>
+  <script src="./js/config.js"></script>
+
+	<script>
+    const list = document.getElementById('list');
+
+		if( checks.length ) {
+			document.getElementById('check-delete').style.display = 'block';
+		}else {
+			document.getElementById('check-none').style.display = 'block';
+		}
+
+      questions.forEach((question => {
+				if(checks.indexOf(question['id']) !== -1 ) {
+					const a = `<a class="link is-check" href="detail.html?qid=${question['id']}">${question['title']}</a>`
+		     list.insertAdjacentHTML('beforeend',a )
+				}
+	  }))
+
+		document.getElementById('check-delete').addEventListener('click',(e) => {
+		 if( window.confirm('本当に外して良いですか？')) {
+			localStorage.removeItem('check');
+			location.href = 'list.html';
+		 }
+		})
+	</script>
+
+
+</body>
+</html
